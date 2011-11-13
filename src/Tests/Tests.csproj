@@ -32,8 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.1.4.0.0\Lib\.NetFramework 4.0\FluentAssertions.dll</HintPath>
-    </Reference>    
+      <HintPath>..\..\packages\FluentAssertions.1.6.0\Lib\net40\FluentAssertions.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -56,13 +56,13 @@
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>        
-    <Compile Include="Properties\AssemblyInfo.cs" />    
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>        
+  <ItemGroup>
     <ProjectReference Include="..\ProjectName\ProjectName.csproj">
       <Project>{EFA8DCC8-0286-4D52-8F11-66495B4F9DC4}</Project>
       <Name>ProjectName</Name>
