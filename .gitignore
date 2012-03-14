@@ -12,3 +12,5 @@ _ReSharper.*
 *.t4properties
 TestResult.xml
 packages
+*.ncrunchsolution
+*.ncrunchproject
