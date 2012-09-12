@@ -1,6 +1,6 @@
 param ( 
     [Parameter(Position = 0, Mandatory=$true)] 
-    [string] $InlineSitemap,
+    [string] $ProjectName,
 
     [Parameter(Position = 1, Mandatory=$true)]
     [string] $ProjectTitle
