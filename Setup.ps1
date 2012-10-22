@@ -7,10 +7,21 @@ param (
 )
 
 # Rename folders and files
-gci -r | ?{ $_.Name -like "InlineSitemap*" } | sort Length -desc | % { "Rename:$_"; Rename-Item $_ -NewName ($_.Name.Replace("InlineSitemap", $InlineSitemap)) }
+gci -filter "ProjectName*" -recurse -name | sort -desc | % { "Rename:$_"; Rename-Item $_ -NewName ((Split-Path $_ -Leaf).Replace("ProjectName", $ProjectName)) }
 
 # Rename in files
-gci -r -file -ex *.exe | ?{ (gc $_ -raw) -like "*InlineSitemap*" } | % { "Replace:$_"; sc $_ ((gc $_ -raw).Replace("InlineSitemap", $InlineSitemap)) }
+function ReplaceInFiles($Pattern, $Replace){
+    gci *.* -recurse -ex *.exe,*.dll,Setup.ps1 | ? {$_ -is [IO.FileInfo]} | % {    
+        $path = $_.FullName
+        $x = (gc $path)
+        if ($x | select-string -pattern $Pattern) {        
+            $y = ($x -replace $Pattern, $Replace)    
+            sc $path $y
+            Write-Host "Replace: $path"
+        }
+    }
 
-gci -r -file -ex *.exe | ?{ (gc $_ -raw) -like "*Inline Sitemap*" } | % { "Replace:$_"; sc $_ ((gc $_ -raw).Replace("Inline Sitemap", $ProjectTitle)) }
+}
 
+ReplaceInFiles "ProjectName", $ProjectName
+ReplaceInFiles "Project Name", $ProjectTitle
